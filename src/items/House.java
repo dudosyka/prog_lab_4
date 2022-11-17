@@ -24,8 +24,11 @@ public class House extends Place {
         return this.getName();
     }
 
-    public boolean equals(House obj) {
-        return this.rooms.size() == obj.rooms.size();
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof House)) return false;
+        House house = (House) obj;
+        return this.rooms.size() == house.rooms.size();
     }
 
     @Override

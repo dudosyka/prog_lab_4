@@ -30,7 +30,10 @@ public class Room extends Place {
         return this.getName().hashCode() + this.doors.hashCode();
     }
 
-    public boolean equals(Place obj) {
-        return this.getName() == obj.getName() && this.doors == obj.doors;
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Room)) return false;
+        Room room = (Room) obj;
+        return this.getName() == room.getName() && this.doors == room.doors;
     }
 }

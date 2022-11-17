@@ -41,9 +41,11 @@ public class Human implements Emotionable, Moveable {
     public String toString() {
         return this.size + " " + this.name;
     }
-
-    public boolean equals(Human obj) {
-        return (obj.name == this.name && obj.size == this.size && obj.sex == this.sex);
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Human)) return false;
+        Human human = (Human) obj;
+        return (human.name == this.name && human.size == this.size && human.sex == this.sex);
     }
 
     @Override

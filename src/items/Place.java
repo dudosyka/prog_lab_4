@@ -31,8 +31,11 @@ public abstract class Place {
         return this.name;
     }
 
-    public boolean equals(Place obj) {
-        return this.name == obj.name && this.placeCondition == obj.placeCondition && this.doors.size() == obj.doors.size();
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Place)) return false;
+        Place place = (Place) obj;
+        return this.name == place.name && this.placeCondition == place.placeCondition && this.doors.size() == place.doors.size();
     }
 
     @Override

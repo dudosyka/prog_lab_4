@@ -14,8 +14,11 @@ public class LegNotFoundException extends Exception {
         return "У " + human.toString() + " не найдена " + limbSide.toString() + " нога";
     }
 
-    public boolean equals(LegNotFoundException obj) {
-        return (this.human == obj.human && this.limbSide == obj.limbSide);
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof LegNotFoundException)) return false;
+        LegNotFoundException legNotFoundException = (LegNotFoundException) obj;
+        return (this.human == legNotFoundException.human && this.limbSide == legNotFoundException.limbSide);
     }
 
     @Override

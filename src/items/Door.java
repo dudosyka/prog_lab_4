@@ -1,6 +1,7 @@
 package items;
 
 import human.Human;
+import human.Memory;
 
 public class Door implements Searchable, Openable {
     private Place direcion = null;
@@ -36,8 +37,11 @@ public class Door implements Searchable, Openable {
         return this.direcion.hashCode() + 100;
     }
 
-    public boolean equals(Door obj) {
-        return this.direcion == obj.direcion;
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Door)) return false;
+        Door door = (Door) obj;
+        return this.direcion == door.direcion;
     }
 
     @Override

@@ -20,8 +20,11 @@ public class Memory {
         return text;
     }
 
-    public boolean equals(Memory obj) {
-        return this.text == obj.text;
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Memory)) return false;
+        Memory memory = (Memory) obj;
+        return this.text == memory.text;
     }
 
     @Override

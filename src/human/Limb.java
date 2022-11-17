@@ -32,9 +32,11 @@ public class Limb {
     public String toString(boolean howNotation, boolean whatNotation) {
         return null;
     };
-
-    public boolean equals(Limb obj) {
-        return this.side == obj.side && this.type == obj.type;
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Limb)) return false;
+        Limb limb = (Limb) obj;
+        return this.side == limb.side && this.type == limb.type;
     }
 
     @Override
