@@ -21,7 +21,7 @@ public class House extends Place {
 
     @Override
     public String toString() {
-        return "Дом " + this.rooms.toString();
+        return this.getName();
     }
 
     public boolean equals(House obj) {
