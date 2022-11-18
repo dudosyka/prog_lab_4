@@ -2,6 +2,7 @@ package items;
 
 import human.Human;
 import human.Memory;
+import human.Opener;
 
 public class Door implements Searchable, Openable {
     private Place direcion = null;
@@ -45,7 +46,7 @@ public class Door implements Searchable, Openable {
     }
 
     @Override
-    public String open(Human human) {
+    public String open(Opener human) {
         return human.toString() + " распахнула " + this.toString();
     }
 }

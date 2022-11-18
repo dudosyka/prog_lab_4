@@ -1,7 +1,8 @@
 package items;
 
 import human.Human;
+import human.Opener;
 
 public interface Openable {
-    String open(Human human);
+    String open(Opener opener);
 }

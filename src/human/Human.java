@@ -6,7 +6,7 @@ import javax.lang.model.type.NullType;
 import java.util.ArrayList;
 import java.util.function.Function;
 
-public class Human implements Emotionable, Moveable {
+public class Human implements Emotionable, Moveable, Opener {
     String name;
     Size size;
     Sex sex;
