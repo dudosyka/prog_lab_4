@@ -7,17 +7,18 @@ public class Room extends Place {
 
     RoomType type;
 
-    public Room(PlaceCondition placeCondition, String name, ArrayList<Door> doors) {
-        super(placeCondition, name, doors);
+    public Room(PlaceCondition placeCondition, String name, ArrayList<Door> doors, ArrayList<BodyPart> bodyParts) {
+        super(placeCondition, name, bodyParts, doors);
     }
-
-    public Room(PlaceCondition placeCondition, String name, RoomType type) {
-        super(placeCondition, name);
+    public Room(PlaceCondition placeCondition, String name, RoomType type, ArrayList<BodyPart> bodyParts) {
+        super(placeCondition, name, bodyParts);
         this.type = type;
     }
-
+    public Room(PlaceCondition placeCondition, String name, ArrayList<BodyPart> bodyParts) {
+        super(placeCondition, name, bodyParts);
+    }
     public Room(PlaceCondition placeCondition, String name) {
-        super(placeCondition, name);
+        super(placeCondition, name, new ArrayList<BodyPart>());
     }
 
     @Override

@@ -1,7 +1,7 @@
 package items;
 
 public enum PlaceCondition {
-    DARK("Темно"), LIGHT("Светло");
+    DARK("Темно"), POORLY_LIGHT("Слабо освещенно"), LIGHT("Светло");
 
     private final String name;
 

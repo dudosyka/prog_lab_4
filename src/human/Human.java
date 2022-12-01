@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.function.Function;
 
 public class Human implements Emotionable, Moveable, Opener {
+    public Head head;
     String name;
     Size size;
     Sex sex;
@@ -16,24 +17,25 @@ public class Human implements Emotionable, Moveable, Opener {
     ArrayList<Limb> limbs = new ArrayList<Limb>();
     ArrayList<Memory> memories = new ArrayList<Memory>();
 
-    public Human(String name, Size size, Sex sex, Place place) {
+    public Human(String name, Size size, Sex sex, Place place, Density hairDensity, boolean isNeckLong, Fatness neckFatness) {
         this.name = name;
         this.size = size;
         this.sex = sex;
         this.place = place;
+        this.head = new Head(false, hairDensity, isNeckLong, neckFatness);
         this.limbs.add(new Limb(LimbSide.RIGHT, LimbType.LEG));
         this.limbs.add(new Limb(LimbSide.LEFT, LimbType.LEG));
         this.limbs.add(new Limb(LimbSide.RIGHT, LimbType.ARM));
         this.limbs.add(new Limb(LimbSide.LEFT, LimbType.ARM));
     }
 
-    public Human(String name, Size size, Sex sex, Place place, ArrayList<Limb> limbs) {
-        this(name, size, sex, place);
+    public Human(String name, Size size, Sex sex, Place place, Density hairDensity, boolean isNeckLong, Fatness neckFatness, ArrayList<Limb> limbs) {
+        this(name, size, sex, place, hairDensity, isNeckLong, neckFatness);
         this.limbs = limbs;
     }
 
-    public Human(String name, Size size, Sex sex, Place place, ArrayList<Limb> limbs, ArrayList<Memory> memories) {
-        this(name, size, sex, place, limbs);
+    public Human(String name, Size size, Sex sex, Place place, Density hairDensity, boolean isNeckLong, Fatness neckFatness, ArrayList<Limb> limbs, ArrayList<Memory> memories) {
+        this(name, size, sex, place, hairDensity, isNeckLong, neckFatness, limbs);
         this.memories = memories;
     }
 
@@ -41,11 +43,49 @@ public class Human implements Emotionable, Moveable, Opener {
     public String toString() {
         return this.size + " " + this.name;
     }
+
+    private interface Status {
+        Sex getSex();
+
+        Size getSize();
+
+        String getName();
+
+        Place getLocation();
+    }
+
+    public String toString(boolean printSize) {
+        return printSize ? this.toString() : this.name;
+    }
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Human)) return false;
         Human human = (Human) obj;
         return (human.name == this.name && human.size == this.size && human.sex == this.sex);
+    }
+
+    public Status getStatus() {
+        return new Status() {
+            @Override
+            public Sex getSex() {
+                return Human.this.sex;
+            }
+
+            @Override
+            public Size getSize() {
+                return Human.this.size;
+            }
+
+            @Override
+            public String getName() {
+                return Human.this.name;
+            }
+
+            @Override
+            public Place getLocation() {
+                return Human.this.place;
+            }
+        };
     }
 
     @Override
@@ -83,8 +123,46 @@ public class Human implements Emotionable, Moveable, Opener {
         return " испугано";
     }
 
-    public void remember(Memory memory) {
-        this.memories.add(memory);
+    @Override
+    public String horrified(String horrifiedFrom) {
+        return "а что если, " + horrifiedFrom + " ужаснулась " + this.toString();
+    }
+
+    public class Memory {
+        private String text;
+
+        public Memory(String text) {
+            this.text = text;
+        }
+
+        String memorize() {
+            return this.text;
+        }
+
+        String getText() {
+            return this.text;
+        }
+
+        @Override
+        public String toString() {
+            return text;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (!(obj instanceof Memory)) return false;
+            Memory memory = (Memory) obj;
+            return this.text == memory.text;
+        }
+
+        @Override
+        public int hashCode() {
+            return this.text.hashCode() + 100;
+        }
+    }
+
+    public void remember(String text) {
+        this.memories.add(new Memory(text));
     }
 
     public String memorize() {
@@ -146,4 +224,11 @@ public class Human implements Emotionable, Moveable, Opener {
         return doSomething.apply(null) + " пока не " + untilSomething.apply(null);
     }
 
+    public String ignore() {
+        return this.name + " не ответила";
+    }
+
+    public String failedWithRoom(Room expectedRoom, Room trueRoom) {
+        return " но вбежала " + this.name + " вовсе не в " + expectedRoom.toString() + ", а в " + trueRoom.toString();
+    }
 }

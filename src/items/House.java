@@ -6,16 +6,20 @@ public class House extends Place {
     ArrayList<Room> rooms = new ArrayList<Room>();
 
     public House(PlaceCondition placeCondition, String name) {
-        super(placeCondition, name);
+        super(placeCondition, name, new ArrayList<BodyPart>());
     }
 
-    public House(PlaceCondition placeCondition, String name, ArrayList<Room> rooms) {
+    public House(PlaceCondition placeCondition, String name, ArrayList<Room> rooms) throws EmptyHouseException {
         this(placeCondition, name);
+        if (rooms.size() == 0)
+            throw new EmptyHouseException();
         this.rooms = rooms;
     }
 
-    public House(PlaceCondition placeCondition, String name, ArrayList<Room> rooms, ArrayList<Door> doors) {
-        super(placeCondition, name, doors);
+    public House(PlaceCondition placeCondition, String name, ArrayList<Room> rooms, ArrayList<Door> doors) throws EmptyHouseException {
+        super(placeCondition, name, new ArrayList<BodyPart>(), doors);
+        if (rooms.size() == 0)
+            throw new EmptyHouseException();
         this.rooms = rooms;
     }
 

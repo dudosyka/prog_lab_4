@@ -1,7 +1,5 @@
 package items;
 
-import human.Human;
-import human.Memory;
 import human.Opener;
 
 public class Door implements Searchable, Openable {

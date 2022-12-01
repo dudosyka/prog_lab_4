@@ -12,4 +12,6 @@ public interface Emotionable {
     String sobbing();
 
     String scarring();
+
+    String horrified(String horrifiedFrom);
 }

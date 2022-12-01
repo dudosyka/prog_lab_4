@@ -1,6 +1,5 @@
 package items;
 
-import human.Human;
 import human.Opener;
 
 public interface Openable {

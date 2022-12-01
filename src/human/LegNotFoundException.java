@@ -1,6 +1,6 @@
 package human;
 
-public class LegNotFoundException extends Exception {
+public class LegNotFoundException extends RuntimeException {
     Human human;
     LimbSide limbSide;
 
