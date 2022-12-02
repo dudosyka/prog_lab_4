@@ -55,5 +55,22 @@ public abstract class Place {
         public String getItems();
     }
 
-    public abstract Inspection inspect();
+    public Inspection inspect() {
+        return new Inspection() {
+            @Override
+            public String getInfo() {
+                return this.getCondition() + " " + this.getItems();
+            }
+
+            @Override
+            public String getCondition() {
+                return Place.this.placeCondition.toString();
+            }
+
+            @Override
+            public String getItems() {
+                return Place.this.bodyParts.toString();
+            }
+        };
+    };
 }
