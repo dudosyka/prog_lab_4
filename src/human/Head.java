@@ -43,7 +43,7 @@ public class Head extends BodyPart {
         }
     }
 
-    public static class Neck {
+    public class Neck {
         public boolean isLong;
 
         public Fatness fatness;
